@@ -8,6 +8,7 @@ class TrainerCard extends Component {
             <div>
                 <h2>Name: {this.props.trainer.name}</h2>
                 <img alt="Trainer" src={this.props.trainer.image}/>
+                <h3>Rating: {this.props.trainer.rating}</h3>
                 <button>Book a session</button>
             </div>
         )

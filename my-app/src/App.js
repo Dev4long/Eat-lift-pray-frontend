@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import TrainerContainer from './TrainerContainer'
+import SessionForm from './SessionForm'
 
 console.log('hello')
 
@@ -21,7 +22,9 @@ export default class App extends React.Component{
   render() {
     return (
       <div>
-       <TrainerContainer trainers={this.state.trainers}/>
+        <h1>Eat, Lift, Pray</h1>
+        <SessionForm />
+        <TrainerContainer trainers={this.state.trainers}/>
       </div>
     );
 
