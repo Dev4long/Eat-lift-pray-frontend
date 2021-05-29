@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import TrainerContainer from './TrainerContainer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+console.log('hello')
+
+export default class App extends React.Component{
+
+  state = {
+    trainers: []
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:9292/trainers')
+    .then(res => res.json())
+    .then(trainers => this.setState(
+        {trainers: trainers}))
+    }
+  
+
+  render() {
+    return (
+      <div>
+       <TrainerContainer trainers={this.state.trainers}/>
+      </div>
+    );
+
+
+
+  }
 }
-
-export default App;
