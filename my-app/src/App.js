@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import TrainerContainer from './TrainerContainer'
-import SessionForm from './SessionForm'
+import MySessions from './MySessions'
 
-console.log('hello')
 
 export default class App extends React.Component{
 
   state = {
-    trainers: []
+    trainers: [],
+    mySessions: [],
   }
 
   componentDidMount() {
@@ -17,13 +17,14 @@ export default class App extends React.Component{
     .then(trainers => this.setState(
         {trainers: trainers}))
     }
+
   
 
   render() {
     return (
       <div>
         <h1>Eat, Lift, Pray</h1>
-        <SessionForm />
+        <MySessions />
         <TrainerContainer trainers={this.state.trainers}/>
       </div>
     );

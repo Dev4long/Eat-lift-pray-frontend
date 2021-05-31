@@ -8,7 +8,7 @@ class TrainerContainer extends Component {
     render() {
         return (
             <div className="row">
-                {this.props.trainers.map(trainer => { return <TrainerCard trainer={trainer} key={trainer.id} />})}
+                {this.props.trainers.map(trainer => { return <TrainerCard trainer={trainer} key={trainer.id}/>})}
             </div>
         )
     }
