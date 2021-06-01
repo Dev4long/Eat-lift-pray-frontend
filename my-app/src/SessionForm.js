@@ -1,26 +1,70 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from 'react-time-picker';
+// import "react-clock/dist/Clock.css"
+import "react-time-picker/dist/TimePicker.css"
 
 
 
-const workoutDescription = ["cardio", "weight training", "calisthenic training", "strength training"]
 
 
-class SessionForm extends Component {
+function SessionForm({addSession}) {
+    let [name, setName] = useState("")
+    let [workoutDescription, setDescription] = useState("")
+    let [selectedDate, setSelectedDate] = useState(null);
+    let [value, onChange] = useState('12:00');
+    let [durationPrice, setDurationPrice] = useState(0)
+    
 
-    render() {
+    let handleSubmit = (e) => {
+        e.preventDefault()
+        fetch("http://localhost:9292/trainers", {
+          method: "POST",
+          headers: {
+            "Content-type": "Application/json"
+          },
+          body: JSON.stringify({
+            name, 
+            workoutDescription,
+            selectedDate,
+            value,
+            durationPrice,
+          })
+        })
+          // .then(res => res.json())
+          // .then(newSession => {
+          //   addSession(newSession)
+          //   setName("")
+          //   setDescription("")
+          //   setSelectedDate("")
+          //   onChange("")
+          //   setDuration("")
+          // })
+    }
+
+
+       
+
         return (
             <div className="container">
-          <form className="add-session-form">
+          <form onSubmit={handleSubmit} className="add-session-form" >
             <h3>Book a session!</h3>
+            <br/>
+            <strong>Client name:</strong>
             <input
             type="text" 
             name="name" 
             placeholder="Enter you name here..." 
             className="input-text"
+            value={name}
+            onChange={(e) => {setName(e.target.value)}}
             />
             <label>
+              <br/>
          <strong>Workout type:</strong>
-         <select>
+         <select
+          onChange={(e) => {setDescription(e.target.value)}}>
           <option value="all">Select...</option>
           <option value="cardio">Cardio</option>
           <option value="weight training">Weight training</option>
@@ -29,7 +73,30 @@ class SessionForm extends Component {
           </select>
             </label>
             <br/>
+            <strong>Select a date:</strong>
+            <DatePicker 
+            selected={selectedDate}
+            onChange={date => setSelectedDate(date)}
+            minDate={new Date()}
+            isClearable
+            />
             <br/>
+            <strong>Select a time:</strong>
+            <TimePicker
+            onChange={onChange}
+            value={value}
+            />
+            <br/>
+            <strong>Session duration:</strong>
+            <select
+            onChange={(e) => {setDurationPrice(e.target.value)}}>
+          <option value="all">Select...</option>
+          <option value={75}>30 min session = $75</option>
+          <option value={100}>1 hour session = $100</option>
+          <option value={150}>2 hour session = $150</option>
+          </select>
+          <br/>
+          <br/>
             <input 
                 type="submit" 
                 name="submit" 
@@ -39,7 +106,7 @@ class SessionForm extends Component {
           </form>
         </div>
         )
-    }
+  
 
 
 

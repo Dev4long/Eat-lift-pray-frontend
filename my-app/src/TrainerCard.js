@@ -21,7 +21,7 @@ class TrainerCard extends Component {
                 <img alt="Trainer" src={this.props.trainer.image}/>
                 <h3>Rating: {this.props.trainer.rating}</h3>
                 <button onClick={() => this.handleSessionForm()}>{`Book a session with ${this.props.trainer.name}`}</button>
-                {this.state.sessionForm ? <SessionForm />:null}
+                {this.state.sessionForm ? <SessionForm trainer={this.props.trainer} />:null}
             </div>
         )
     }
