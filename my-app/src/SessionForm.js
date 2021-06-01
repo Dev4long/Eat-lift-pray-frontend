@@ -30,18 +30,12 @@ function SessionForm(props) {
             price: durationPrice,
             client_id: 17,
             trainer_id: props.trainer.id,
-
-
           })
         })
           .then(res => res.json())
           
           .then(newSession => {
-            if (newSession.trainer_id === props.trainer.id){
-            return props.addSession(props.trainer)}
-            else {
-              null}
-            // props.addSession(newSession)
+            props.addSession(newSession)
             setDescription("")
             setSelectedDate("")
             onChange("")
