@@ -9,8 +9,7 @@ import "react-time-picker/dist/TimePicker.css"
 
 
 
-function SessionForm({addSession}) {
-    let [name, setName] = useState("")
+function SessionForm(props) {
     let [workoutDescription, setDescription] = useState("")
     let [selectedDate, setSelectedDate] = useState(null);
     let [value, onChange] = useState('12:00');
@@ -19,29 +18,33 @@ function SessionForm({addSession}) {
 
     let handleSubmit = (e) => {
         e.preventDefault()
-        fetch("http://localhost:9292/trainers", {
+        fetch('http://localhost:9292/trainers', {
           method: "POST",
           headers: {
             "Content-type": "Application/json"
           },
           body: JSON.stringify({
-            name, 
-            workoutDescription,
-            selectedDate,
-            value,
-            durationPrice,
+            workout_description: workoutDescription,
+            date: selectedDate,
+            time: value,
+            price: durationPrice,
+            client_id: 17,
+            trainer_id: props.trainer.id,
+
+
           })
         })
-          // .then(res => res.json())
-          // .then(newSession => {
-          //   addSession(newSession)
-          //   setName("")
-          //   setDescription("")
-          //   setSelectedDate("")
-          //   onChange("")
-          //   setDuration("")
-          // })
+          .then(res => res.json())
+          
+          .then(newSession => {
+            props.addSession(newSession)
+            setDescription("")
+            setSelectedDate("")
+            onChange("")
+            setDurationPrice("")
+          })
     }
+   
 
 
        
@@ -51,15 +54,6 @@ function SessionForm({addSession}) {
           <form onSubmit={handleSubmit} className="add-session-form" >
             <h3>Book a session!</h3>
             <br/>
-            <strong>Client name:</strong>
-            <input
-            type="text" 
-            name="name" 
-            placeholder="Enter you name here..." 
-            className="input-text"
-            value={name}
-            onChange={(e) => {setName(e.target.value)}}
-            />
             <label>
               <br/>
          <strong>Workout type:</strong>

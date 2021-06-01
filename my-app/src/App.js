@@ -5,7 +5,7 @@ import MySessions from './MySessions'
 
 
 export default class App extends React.Component{
-
+   
   state = {
     trainers: [],
     mySessions: [],
@@ -18,18 +18,24 @@ export default class App extends React.Component{
         {trainers: trainers}))
     }
 
-  
+    addSession = (sessionObj) => {
+      let newSessionArray = [...this.state.mySessions, sessionObj]
+      this.setState({mySessions: newSessionArray})
+    }
+
+
 
   render() {
+    console.log(this.state.mySessions)  
     return (
       <div>
         <h1>Eat, Lift, Pray</h1>
-        <MySessions />
-        <TrainerContainer trainers={this.state.trainers}/>
+        <MySessions mySessions={this.state.mySessions}/>
+        <TrainerContainer trainers={this.state.trainers} addSession={this.addSession}/>
       </div>
     );
 
-
+    
 
   }
 }
