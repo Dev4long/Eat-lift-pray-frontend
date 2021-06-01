@@ -37,7 +37,11 @@ function SessionForm(props) {
           .then(res => res.json())
           
           .then(newSession => {
-            props.addSession(newSession)
+            if (newSession.trainer_id === props.trainer.id){
+            return props.addSession(props.trainer)}
+            else {
+              null}
+            // props.addSession(newSession)
             setDescription("")
             setSelectedDate("")
             onChange("")
@@ -45,7 +49,7 @@ function SessionForm(props) {
           })
     }
    
-
+      console.log(props.trainer)
 
        
 
