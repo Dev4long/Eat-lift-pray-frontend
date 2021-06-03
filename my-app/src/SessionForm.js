@@ -18,7 +18,7 @@ function SessionForm(props) {
 
     let handleSubmit = (e) => {
         e.preventDefault()
-        fetch('http://localhost:9292/trainers', {
+        fetch('http://localhost:9292/clients', {
           method: "POST",
           headers: {
             "Content-type": "Application/json"
@@ -28,22 +28,22 @@ function SessionForm(props) {
             date: selectedDate,
             time: value,
             price: durationPrice,
-            client_id: 17,
+            client_id: props.mySessions.id,
             trainer_id: props.trainer.id,
           })
         })
           .then(res => res.json())
-          
           .then(newSession => {
             props.addSession(newSession)
+            console.log(newSession)
             setDescription("")
             setSelectedDate("")
             onChange("")
             setDurationPrice("")
           })
     }
-   
-      console.log(props.trainer)
+  //  console.log(props.mySessions.sessions)
+      // console.log(props.trainer)
 
        
 

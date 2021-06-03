@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TrainerCard from "./TrainerCard"
+import SessionCard from "./SessionCard"
 
 
 
@@ -7,9 +7,11 @@ class MySessions extends Component {
 
 
     render() {
+        // console.log("mySession",this.props.mySessions.sessions)
         return (
             <div>
-           {this.props.mySessions.map(sessions => { return <TrainerCard trainer={sessions} key={sessions.id} />})}
+                <h2>Your session details</h2>
+           {this.props.mySessions.sessions.map(sessions => { return <SessionCard sessions={sessions} key={sessions.id} />})}
             </div>
         )
     }
