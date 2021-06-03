@@ -23,9 +23,10 @@ class LoginForm extends Component {
            age: this.state.registerAge
           })
      })
-          .then(console.log("inside .then"),
-             this.setState({registerName: ""}),
-             this.setState({registerAge: ""})
+          .then(
+             this.setState({registerName:""}),
+             this.setState({registerAge:""}),
+             alert("successfully registered ")
           )
 
 
@@ -37,13 +38,17 @@ class LoginForm extends Component {
         fetch('http://localhost:9292/clients')
         .then(res => res.json())
         .then(clients =>  
-            this.props.clientLogin(clients.find(client =>  client.name === this.state.loginName
+           (clients.find(client =>  client.name === this.state.loginName ? this.props.clientLogin(client) : null 
                 )))
             
     }
     
+   
+ 
 
     render() {
+       console.log(this.props.clientObject)
+        
      return(
         <div>
         <form onSubmit={this.handleLogin}>
@@ -71,6 +76,7 @@ class LoginForm extends Component {
                 className="submit"
             />
         </form>
+        <br></br>
         </div>
      )
      

@@ -1,17 +1,24 @@
 import React, { Component } from "react";
-
-
-
+import UpdateSession from "./UpdateSession";
 
 class SessionCard extends Component {
 
+    
+   
+   
+    state= {
+        sessionForm: false,
+    }
+
+        handleSessionForm = () => {
+        this.setState({
+      sessionForm : !this.state.sessionForm
+        })
+        }
+
 
     render() {
-        // let trainer = this.props.trainers.filter(trainer => this.props.sessions.trainer_id === trainer.id)
-        // console.log(this.props.sessions.sessions[0].date)
-        
        
-    //    console.log(this.props.sessions.sessions.map(sessions => (sessions.date.slice(0, 10))))
         return (
             <div>
           
@@ -35,9 +42,11 @@ class SessionCard extends Component {
           Trainer: {this.props.sessions.trainer.name},
           </div>
           <br></br>
+          <button onClick={() => this.handleSessionForm()}>Need to make changes? Update your session</button>
+          { this.state.sessionForm ? <UpdateSession clientObject={this.props.clientObject} updateSession={this.props.updateSession} sessions={this.props.sessions}/>:null}
+          <br></br>
           <img alt="Trainer" src={this.props.sessions.trainer.image}/>,
-          
-
+          <button onClick={() => this.props.deleteSession(this.props.sessions.id)}>Delete this session</button>
             </div>
         )
     }
