@@ -34,12 +34,31 @@ class LoginForm extends Component {
 
     handleLogin = (e) => {
         e.preventDefault()
+        fetch('http://localhost:9292/clientLogin', {
+            method: "POST",
+            headers: {
+              "Content-type": "Application/json"
+            },
+            body: JSON.stringify({
+             name: this.state.loginName,
+             
+            })
+       })
+            // .then(
+            //    this.setState({registerName:""}),
+            //    this.setState({registerAge:""}),
+            //    alert("successfully registered ")
+            // )
+    
+
+
+
         
-        fetch('http://localhost:9292/clients')
+        // fetch('http://localhost:9292/clients')
         .then(res => res.json())
-        .then(clients =>  
-           (clients.find(client =>  client.name === this.state.loginName ? this.props.clientLogin(client) : null 
-                )))
+        .then(client => console.log(client)) 
+        //    (clients.find(client =>  client.name === this.state.loginName ? this.props.clientLogin(client) : alert("no user") 
+        //         )))
             
     }
     

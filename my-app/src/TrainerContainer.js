@@ -8,14 +8,10 @@ class TrainerContainer extends Component {
 
     render() {
         return (
-            <div className="row">
-                <Container textAlign='center'>
-                <Grid padded = "horizontally" inverted columns={3}>
-                    
+            <div className="trainerContainer">
+    
                 {this.props.trainers.map(trainer => { return <TrainerCard trainer={trainer} key={trainer.id} addSession={this.props.addSession} mySessions={this.props.mySessions} clientObject={this.props.clientObject}/>})}
-                    
-                </Grid>
-                </Container>
+
             </div>
         )
     }
