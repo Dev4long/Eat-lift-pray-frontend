@@ -28,7 +28,7 @@ function SessionForm(props) {
             date: selectedDate,
             time: value,
             price: durationPrice,
-            client_id: props.mySessions.id,
+            client_id: props.clientObject.id,
             trainer_id: props.trainer.id,
           })
         })

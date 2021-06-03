@@ -15,7 +15,7 @@ class SessionCard extends Component {
         return (
             <div>
           
-          {/* <div>
+          <div>
           Workout Description: {this.props.sessions.workout_description},
           </div>
           <br></br>
@@ -36,7 +36,7 @@ class SessionCard extends Component {
           </div>
           <br></br>
           <img alt="Trainer" src={this.props.sessions.trainer.image}/>,
-           */}
+          
 
             </div>
         )

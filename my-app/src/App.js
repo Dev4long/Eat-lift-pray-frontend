@@ -9,7 +9,8 @@ export default class App extends React.Component{
    
   state = {
     trainers: [],
-    mySessions: {sessions: []},
+    mySessions: [],
+    clientObject: []
   }
 
   componentDidMount() {
@@ -28,21 +29,22 @@ export default class App extends React.Component{
    
       
     addSession = (sessionObj) => {
-      let newSessionArray = [this.state.mySessions.sessions]
-      newSessionArray.push(sessionObj)
-      this.setState({mySessions: {sessions:newSessionArray}})
+      let newSessionArray = [...this.state.mySessions,sessionObj]
+      this.setState({mySessions: newSessionArray})
       console.log(newSessionArray)
     }
 
     clientLogin = (clientObj) => {
-    this.setState({mySessions: {sessions:[clientObj.sessions]}})
-    // console.log(clientObj.sessions)
+    this.setState({mySessions: clientObj.sessions})
+    this.setState({clientObject: clientObj})
+    console.log(this.state.clientObject)
     }
+   
 
 
 
   render() {
-    console.log(this.state.mySessions.sessions)
+    console.log(this.state.mySessions)
     
    
     
@@ -51,7 +53,7 @@ export default class App extends React.Component{
         <h1>Eat, Lift, Pray</h1>
         <LoginForm clientLogin={this.clientLogin}/>
         <MySessions mySessions={this.state.mySessions} />
-        <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession}/>
+        <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/>
       </div>
     );
 

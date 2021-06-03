@@ -11,7 +11,7 @@ class MySessions extends Component {
         return (
             <div>
                 <h2>Your session details</h2>
-           {this.props.mySessions.sessions.map(sessions => { return <SessionCard sessions={sessions} key={sessions.id} />})}
+           {this.props.mySessions.map(sessions => { return <SessionCard sessions={sessions} key={sessions.id} />})}
             </div>
         )
     }
