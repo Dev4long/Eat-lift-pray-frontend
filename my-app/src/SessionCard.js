@@ -20,33 +20,36 @@ class SessionCard extends Component {
     render() {
        
         return (
-            <div>
+            <div className="sessionCard">
           
           <div>
-          Workout Description: {this.props.sessions.workout_description},
+          <h5>Workout Description: {this.props.sessions.workout_description}</h5>
           </div>
           <br></br>
           <div>
-          Date: {this.props.sessions.date.slice(0, 10)},
+          <h5>Date: {this.props.sessions.date.slice(0, 10)}</h5>
           </div>
           <br></br>
           <div>
-          Time: {this.props.sessions.time},
+          <h5>Time: {this.props.sessions.time} Hours</h5>
           </div>
           <br></br>
           <div>
-          Price: {this.props.sessions.price},
+          <h5>Price: ${this.props.sessions.price}</h5>
           </div>
           <br></br>
           <div>
-          Trainer: {this.props.sessions.trainer.name},
+          <h5>Your trainer: {this.props.sessions.trainer.name}</h5>
           </div>
           <br></br>
-          <button onClick={() => this.handleSessionForm()}>Need to make changes? Update your session</button>
+          <button class="btn btn-primary mr-1" onClick={() => this.handleSessionForm()}>Need to make changes? Update your session</button>
           { this.state.sessionForm ? <UpdateSession clientObject={this.props.clientObject} updateSession={this.props.updateSession} sessions={this.props.sessions}/>:null}
           <br></br>
-          <img alt="Trainer" src={this.props.sessions.trainer.image}/>,
-          <button onClick={() => this.props.deleteSession(this.props.sessions.id)}>Delete this session</button>
+          <img alt="Trainer" src={this.props.sessions.trainer.image}/>
+          <br></br>
+          <button class="btn btn-primary mr-1" onClick={() => this.props.deleteSession(this.props.sessions.id)}>Delete this session</button>
+          <br></br>
+          <p></p>
             </div>
         )
     }

@@ -6,6 +6,7 @@ import LoginForm from './LoginForm'
 import SearchBar from './SearchBar'
 import OpeningPage from './OpeningPage'
 import {BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import './custom-theme.scss'
 
 
 
@@ -16,6 +17,7 @@ export default class App extends React.Component{
     mySessions: [],
     clientObject: [],
     sorted: "none"
+
   }
 
  
@@ -44,10 +46,8 @@ export default class App extends React.Component{
       .then(res => res.json())
       .then(() => {
       this.setState({
-       mySessions: deletedSessionArr
-       
-        
-      })
+       mySessions: deletedSessionArr})
+       alert("Session successfully deleted but... DO YOU EVEN LIFT BRO??")
     })
     }
 
@@ -75,7 +75,7 @@ export default class App extends React.Component{
     clientLogin = (clientObj) => {
     this.setState({mySessions: clientObj.sessions})
     this.setState({clientObject: clientObj})
-    // console.log(this.state.clientObject)
+    console.log(this.state.clientObject)
     }
    
     logOut = () => {
@@ -97,19 +97,40 @@ export default class App extends React.Component{
 
   render() {
 
-    
+  console.log(this.state.mySessions)  
     
     return (
      
       <div>
-        
-        {this.state.clientObject.id > 0 ? alert("user is looged in"): null}
-        <h1>Eat, Lift, Pray</h1>
-        {this.state.clientObject.id > 0 ? <button onClick={this.logOut}>Logout</button> : null}
-        {this.state.clientObject.id > 0 ?  null :<LoginForm clientLogin={this.clientLogin} clientObject={this.state.clientObject}/>}
-        <MySessions mySessions={this.state.mySessions} deleteSession={this.deleteSession} clientObject={this.state.clientObject} updateSession={this.updateSession}/>
-        <SearchBar sortRatings={this.sortRatings} sortedType={this.state.sorted}/>
-        <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/>
+        <h1 className="heading">Eat, Lift, Pray</h1>
+        <Router>
+          <Switch>
+          
+          <Route path = "/loginForm">
+          {this.state.clientObject.id > 0 ? <button class="btn btn-primary mr-1" onClick={this.logOut}>Logout</button> : null}
+          {this.state.clientObject.id > 0 ?  null :<LoginForm clientLogin={this.clientLogin} clientObject={this.state.clientObject}/>}
+          <MySessions mySessions={this.state.mySessions} deleteSession={this.deleteSession} clientObject={this.state.clientObject} updateSession={this.updateSession}/>
+          <br></br>
+          <br></br>
+          {this.state.clientObject.id > 0 ? <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/> : null}
+
+          {/* <SearchBar sortRatings={this.sortRatings} sortedType={this.state.sorted}/> */}
+          {/* <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/> */}
+          </Route>
+          <Route path = "/trainers">
+            <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/>
+          </Route>
+        {/* {this.state.clientObject.id > 0 ? alert("Successful login. Lift and rejoice!"): null} */}
+        {/* <h1 className="heading">Eat, Lift, Pray</h1> */}
+        {/* {this.state.clientObject.id > 0 ? <button onClick={this.logOut}>Logout</button> : null} */}
+        {/* {this.state.clientObject.id > 0 ?  null :<LoginForm clientLogin={this.clientLogin} clientObject={this.state.clientObject}/>} */}
+        {/* <LoginForm clientLogin={this.clientLogin} clientObject={this.state.clientObject} /> */}
+        {/* <MySessions mySessions={this.state.mySessions} deleteSession={this.deleteSession} clientObject={this.state.clientObject} updateSession={this.updateSession}/> */}
+        {/* <SearchBar sortRatings={this.sortRatings} sortedType={this.state.sorted}/> */}
+        {/* <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/> */}
+        <Route path = "/" component={OpeningPage}/>
+        </Switch>
+        </Router>
       </div>
     );
 

@@ -26,7 +26,7 @@ class LoginForm extends Component {
           .then(
              this.setState({registerName:""}),
              this.setState({registerAge:""}),
-             alert("successfully registered ")
+             alert("You've just embarked on your journey to GREATNESS!!!")
           )
 
 
@@ -34,31 +34,29 @@ class LoginForm extends Component {
 
     handleLogin = (e) => {
         e.preventDefault()
-        fetch('http://localhost:9292/clientLogin', {
-            method: "POST",
-            headers: {
-              "Content-type": "Application/json"
-            },
-            body: JSON.stringify({
-             name: this.state.loginName,
+    //     fetch('http://localhost:9292/clientLogin', {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-type": "Application/json"
+    //         },
+    //         body: JSON.stringify({
+    //          name: this.state.loginName,
              
-            })
-       })
-            // .then(
-            //    this.setState({registerName:""}),
-            //    this.setState({registerAge:""}),
-            //    alert("successfully registered ")
-            // )
-    
-
-
-
+    //         })
+    //    })
+    //     .then(res => res.json())
+    //     .then(client => 
+    //         // console.log(client)
+    //         client ? this.props.clientLogin(client) : alert(client.error),
+    //         // this.props.clientObject.name.length > 0 ? alert("logged in") : null,
+    //         console.log(this.props.clientObject),
+    //         this.setState({loginName: ""})
+    //         ) 
+    fetch('http://localhost:9292/clients')
+    .then(res => res.json())
+        .then(clients => clients.find(client =>  client.name.toLowerCase() === this.state.loginName.toLowerCase() ? this.props.clientLogin(client) : null)
+        )
         
-        // fetch('http://localhost:9292/clients')
-        .then(res => res.json())
-        .then(client => console.log(client)) 
-        //    (clients.find(client =>  client.name === this.state.loginName ? this.props.clientLogin(client) : alert("no user") 
-        //         )))
             
     }
     
@@ -66,10 +64,11 @@ class LoginForm extends Component {
  
 
     render() {
-       console.log(this.props.clientObject)
+       console.log(this.props.clientObject.name)
         
      return(
         <div>
+        <h4>Already a member? Login & Lift</h4>
         <form onSubmit={this.handleLogin}>
         <input onChange={(e)=> this.setState({loginName: e.target.value})}
         placeholder="enter your name"
@@ -79,8 +78,11 @@ class LoginForm extends Component {
                 name="submit" 
                 value="Login" 
                 className="submit"
+                class="btn btn-primary mr-1"
             />
         </form>
+        <br></br>
+        <h4>Get registered & Get swole!</h4>
         <form onSubmit={this.handleRegister}>
         <input onChange={(e)=> this.setState({registerName: e.target.value})}
         placeholder="enter your name"
@@ -93,6 +95,7 @@ class LoginForm extends Component {
                 name="submit" 
                 value="Register as new client" 
                 className="submit"
+                class="btn btn-primary mr-1"
             />
         </form>
         <br></br>

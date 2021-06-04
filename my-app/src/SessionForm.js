@@ -39,6 +39,7 @@ function SessionForm(props) {
             setSelectedDate("")
             onChange("")
             setDurationPrice("")
+            alert("Session booked! Happy Training.")
           })
     }
   //  console.log(props.mySessions.sessions)
@@ -52,7 +53,6 @@ function SessionForm(props) {
             <h3>Book a session!</h3>
             <br/>
             <label>
-              <br/>
          <strong>Workout type:</strong>
          <select
           onChange={(e) => {setDescription(e.target.value)}}>
@@ -73,6 +73,7 @@ function SessionForm(props) {
             />
             <br/>
             <strong>Select a time:</strong>
+            <br></br>
             <TimePicker
             onChange={onChange}
             value={value}
@@ -93,6 +94,7 @@ function SessionForm(props) {
                 name="submit" 
                 value="Book a new Session" 
                 className="submit"
+                class="btn btn-primary mr-1"
             />
           </form>
         </div>

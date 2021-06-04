@@ -41,6 +41,7 @@ function UpdateSession(props) {
             onChange("")
             setDurationPrice("")
             setTrainerId("")
+            alert("WHAT HAPPENED? Don't get any funny ideas... Sooner or later you've got to get BIG. Changes saved.")
           })
     }
 
@@ -51,7 +52,7 @@ function UpdateSession(props) {
             <h3>Edit your session details</h3>
             <br/>
             <label>
-              <br/>
+            
          <strong>Workout type:</strong>
          <select
           onChange={(e) => {setDescription(e.target.value)}}>
@@ -72,6 +73,7 @@ function UpdateSession(props) {
             />
             <br/>
             <strong>Select a time:</strong>
+            <br></br>
             <TimePicker
             onChange={onChange}
             value={value}
@@ -104,11 +106,13 @@ function UpdateSession(props) {
               <option value={13}>The hulk</option>    
           </select>
           <br/>
+          <br></br>
             <input 
                 type="submit" 
                 name="submit" 
                 value="Save changes" 
                 className="submit"
+                class="btn btn-primary mr-1"
             />
           </form>
         </div>
