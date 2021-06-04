@@ -10,7 +10,7 @@ class TrainerContainer extends Component {
         return (
             <div className="trainerContainer">
                 
-                <h1>Meet The Trainers</h1>
+                {/* <h1>Meet The Trainers</h1> */}
                 
                 
                 

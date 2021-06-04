@@ -131,11 +131,11 @@ strong {
   color: #d5a530
 }
 
-h4, h3, .greatness, .trainerContainer h1 {
+h4, h3, .greatness, .trainerContainer h1 , .sorter h1{
   color: #d5a530
 }
 
-h2.sessions, .trainerContainer h3, .greatness, .trainerContainer h1{
+h2.sessions, .trainerContainer h3, .greatness, .trainerContainer h1, div.sorter{
   text-align: center;
 }
 
@@ -165,6 +165,8 @@ form {
 div.react-time-picker__wrapper {
   background-color: white;
 }
+
+
 
 /* h2, h5 {
   color: white;

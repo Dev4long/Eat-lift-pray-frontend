@@ -112,12 +112,11 @@ export default class App extends React.Component{
           <MySessions mySessions={this.state.mySessions} deleteSession={this.deleteSession} clientObject={this.state.clientObject} updateSession={this.updateSession}/>
           <br></br>
           <br></br>
+          {this.state.clientObject.id > 0 ? <SearchBar sortRatings={this.sortRatings} sortedType={this.state.sorted}/> : null}
           {this.state.clientObject.id > 0 ? <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/> : null}
-
-          {/* <SearchBar sortRatings={this.sortRatings} sortedType={this.state.sorted}/> */}
-          {/* <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/> */}
           </Route>
           <Route path = "/trainers">
+            <SearchBar sortRatings={this.sortRatings} sortedType={this.state.sorted}/>
             <TrainerContainer mySessions={this.state.mySessions} trainers={this.state.trainers} addSession={this.addSession} clientObject={this.state.clientObject}/>
           </Route>
         {/* {this.state.clientObject.id > 0 ? alert("Successful login. Lift and rejoice!"): null} */}
